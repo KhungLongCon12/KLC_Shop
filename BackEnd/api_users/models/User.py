@@ -10,8 +10,7 @@ class User(TimeStampedModel):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=20, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
-    email = models.CharField(max_length=100, null=True,
-                             blank=True, unique=True)
+    email = models.CharField(max_length=100, null=True, blank=True, unique=True)
     gender = models.CharField(max_length=10)
     career = models.CharField(max_length=100, null=True, blank=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)

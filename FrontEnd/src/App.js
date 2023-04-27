@@ -4,7 +4,6 @@ import { Cart } from "./pages/Cart";
 import HomePage from "./pages/HomePage";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
-import { ResetPassword } from "./pages/ResetPassword";
 
 export default function App() {
     return (
