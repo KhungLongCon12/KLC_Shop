@@ -3,7 +3,8 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Cart } from "./pages/Cart";
 import HomePage from "./pages/HomePage";
 import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
+import { SignUp } from "./pages/SignUp";
+import { ResetPassword } from "./pages/ResetPassword";
 
 export default function App() {
     return (
@@ -12,7 +13,7 @@ export default function App() {
                 <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route path="/signup" element={<SignUp />} />
                     <Route path="/cart" element={<Cart />} />
                 </Routes>
                 <Outlet />

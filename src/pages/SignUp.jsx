@@ -1,10 +1,10 @@
 import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material"
 import "../css/login.css"
 import { useNavigate } from "react-router-dom"
-import REGISTERBACKGR from "../assets/img/register.png"
+import SIGNUPBGR from "../assets/img/sign-up.png"
 import WORDGREETING from "../assets/img/word-Logo-Remove-BackGr.png"
 
-export function Register() {
+export function SignUp() {
     const navigate = useNavigate();
 
     const authentication = () => {
@@ -17,7 +17,7 @@ export function Register() {
                 <Box component="form"
                     sx={{
                         '& .MuiTextField-root': { m: 1, width: '450px' },
-                        '& .MuiButton-root': { m: 2 },
+                        '& .MuiButton-root': { m: 1, width: '450px' },
                         my: 6, mx: 4,
                         marginBottom: "6px",
                         display: 'flex',
@@ -25,13 +25,12 @@ export function Register() {
                         alignItems: 'center',
                     }}>
                     <Typography component='img' src={WORDGREETING} alt='greeting' />
-                    <Typography id="header"> Sign up </Typography>
-                    <TextField type="email" label="Gmail"></TextField>
+                    <TextField type="email" label="Email"></TextField>
                     <TextField type="number" label="Phone number"></TextField>
                     <TextField type="password" label="Password" placeholder="At least 8 character" />
                     <TextField type="password" label="Confirm Password" placeholder="At least 8 character" />
                     <Stack direction="row" spacing={4} display="flex" alignItems="center">
-                        <Button variant="contained" color="warning" type="submit" onClick={authentication}>
+                        <Button variant="contained" color="warning" type="submit" size="large" onClick={authentication}>
                             Sign up
                         </Button>
                     </Stack>
@@ -39,8 +38,10 @@ export function Register() {
                 </Box>
             </Grid>
             <Grid item xs={6}>
-                <img className="signup-image" alt="login" src={REGISTERBACKGR} />
+                <img className="signup-image" alt="login" src={SIGNUPBGR} />
             </Grid>
         </Grid >
     )
 }
+
+

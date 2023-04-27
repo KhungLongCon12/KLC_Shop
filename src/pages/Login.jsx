@@ -1,7 +1,9 @@
 import "../css/login.css"
+import { useState } from "react";
 import LOGINIMAGE from "../assets/img/login.svg"
 import WORDGREETING from "../assets/img/word-Logo-Remove-BackGr.png"
-import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material"
+import RESETPWIMAGE from "../assets/img/reset-password.png"
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Stack, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
@@ -13,16 +15,26 @@ export function Login() {
         navigate('/')
     }
 
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleOpenDialog = () => {
+        setOpenDialog(true)
+    }
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    }
+
     return (
         <Grid container direction="row" justifyContent="center" alignItems='center' >
             <Grid item xs={6}>
-                <img className="login-image" alt="login" src={LOGINIMAGE} />
+                <Typography component="img" className="login-image" alt="login" src={LOGINIMAGE} />
             </Grid>
             <Grid item xs={6}>
                 <Box component="form"
                     sx={{
                         '& .MuiTextField-root': { m: 1, width: '450px' },
-                        '& .MuiButton-root': { m: 2 },
+                        '& .MuiButton-root': { m: 1 },
                         my: 6, mx: 4,
                         marginBottom: "6px",
                         display: 'flex',
@@ -30,23 +42,62 @@ export function Login() {
                         alignItems: 'center',
                     }}>
                     <Typography component='img' src={WORDGREETING} alt='greeting' />
-                    <Typography id="header"> Log in </Typography>
-                    <TextField type="text" label="Phone number / Gmail" placeholder="Phone number / Gmail" />
+                    <TextField type="text" label="Phone number / email" placeholder="Phone number / email" />
                     <TextField type="password" label="Password" placeholder="At least 8 character" />
-                    <Typography className="input" paddingLeft="300px" component="h1"> Forgot your <a href="?"> password </a> ? </Typography>
+                    <Typography>
+                        Forgot your<Button id="my-button" onClick={handleOpenDialog}>password</Button>?
+                        <ResetPasswordPopUp open={openDialog} handleClose={handleCloseDialog} />
+                    </Typography>
                     <div>
                         <Stack direction="row" spacing={4} display="flex" alignItems="center">
-                            <Button variant="contained" color="info" startIcon={<LoginIcon fontSize="large" />} type="submit" onClick={logSuccess} >
+                            <Button variant="contained" color="info" endIcon={<LoginIcon />} type="submit" onClick={logSuccess} >
                                 Login
                             </Button>
-                            <Button variant="contained" color="warning" startIcon={<GoogleIcon fontSize="large" />} onClick={() => navigate()} >
+                            <Button variant="contained" color="warning" startIcon={<GoogleIcon />} onClick={() => navigate()} >
                                 Login with Google
                             </Button>
                         </Stack>
                     </div>
-                    <Typography className="input" component="h1"> New to DYNO Store ? <a href="/register"> Sign up </a></Typography>
+                    <Typography className="input" component="h1"> New to Dyno Store ? <a href="/signup"> Sign up </a></Typography>
                 </Box>
             </Grid>
         </Grid >
+    )
+}
+
+const ResetPasswordPopUp = (props) => {
+    const { open, handleClose } = props
+
+    const handleReset = () => {
+        console.log(alert('Reset success'))
+        handleClose();
+    }
+
+    return (
+        <Dialog
+            sx={{
+                '& .MuiTextField-root': { m: 3, width: '295px' },
+            }}
+            open={open}
+            onClose={handleClose}
+        >
+            <DialogTitle>
+                Reset Password
+            </DialogTitle>
+            <DialogContent sx={{ padding: '0px 24px 0px 24px' }}>
+                <Grid container direction="row" justifyContent="center" alignItems='center'>
+                    <Grid item xs={5}>
+                        <Typography component="img" className="reset-image" alt="login" src={RESETPWIMAGE} />
+                    </Grid>
+                    <Grid item xs={7}>
+                        <TextField placeholder="Enter Email" label="Enter phone number/ email" type="text" />
+                    </Grid>
+                </Grid>
+            </DialogContent>
+            <DialogActions>
+                <Button variant="outlined" onClick={handleClose} >Close</Button>
+                <Button variant="outlined" onClick={handleReset} >Reset password</Button>
+            </DialogActions>
+        </Dialog >
     )
 }

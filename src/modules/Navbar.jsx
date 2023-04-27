@@ -43,7 +43,7 @@ export default function Navbar() {
                                     </Button>
                                     <Button color="inherit" size="large"
                                         onClick={() => { navigate('/register') }}
-                                        endIcon={<HowToRegTwoToneIcon />}>Register</Button>
+                                        endIcon={<HowToRegTwoToneIcon />}>Sign Up</Button>
                                     <Button color="inherit" size="large" onClick={() => { navigate('/cart') }} endIcon={
                                         <Badge color="secondary">
                                             <ShoppingCartTwoToneIcon />
