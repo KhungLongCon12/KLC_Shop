@@ -9,8 +9,8 @@ from core import settings
 # from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('djoser.urls')),
-    # path('', include('djoser.urls.authtoken')),
+    # path('api/v1/', include('djoser.urls')),
+    # path('api/v1/', include('djoser.urls.authtoken')),
     # url(r'^media/(?P<path>.")$', serve, {'document_root': settings.MEDIA_ROOT}),
     # url(r'^static/(?P<path>.")$', serve, {'document_root': settings.STATIC_ROOT}),
     path('product/', include('api_products.urls')),
