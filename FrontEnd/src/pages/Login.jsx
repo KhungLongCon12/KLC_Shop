@@ -31,7 +31,7 @@ export function Login() {
             userName: email,
             passWord: pass,
         };
-        axios.post("http://127.0.0.1:8000//account/login/", data).then((resp) => {
+        axios.post("http://127.0.0.1:8000/account/login/", data).then((resp) => {
             console.log('login thanh cong');
             console.log(resp.data);
             navigate('/');
