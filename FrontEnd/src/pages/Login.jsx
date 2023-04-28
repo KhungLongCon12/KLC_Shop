@@ -1,4 +1,5 @@
 import "../css/login.css"
+import axios from "axios"
 import { useState } from "react";
 import LOGINIMAGE from "../assets/img/login.svg"
 import WORDGREETING from "../assets/img/word-Logo-Remove-BackGr.png"
@@ -9,13 +10,12 @@ import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
 
 export function Login() {
-    const navigate = useNavigate();
-
-    const logSuccess = () => {
-        navigate('/')
-    }
-
+    // Variable
     const [openDialog, setOpenDialog] = useState(false);
+    const [email, setEmail] = useState();
+    const [pass, setPass] = useState();
+    //Syntax
+    const navigate = useNavigate();
 
     const handleOpenDialog = () => {
         setOpenDialog(true)
@@ -25,13 +25,30 @@ export function Login() {
         setOpenDialog(false);
     }
 
+    //Request API
+    const handleLogin = () => {
+        const data = {
+            userName: email,
+            passWord: pass,
+        };
+        axios.post("http://127.0.0.1:8000//account/login/", data).then((resp) => {
+            console.log('login thanh cong');
+            console.log(resp.data);
+            navigate('/');
+        }).catch((err) => {
+            console.log('khong thanh cong')
+            console.log("Error", err.message);
+        });
+    }
+
+
     return (
         <Grid container direction="row" justifyContent="center" alignItems='center' >
             <Grid item xs={6}>
                 <Typography component="img" className="login-image" alt="login" src={LOGINIMAGE} />
             </Grid>
             <Grid item xs={6}>
-                <Box component="form"
+                <Box
                     sx={{
                         '& .MuiTextField-root': { m: 1, width: '450px' },
                         '& .MuiButton-root': { m: 1 },
@@ -42,15 +59,27 @@ export function Login() {
                         alignItems: 'center',
                     }}>
                     <Typography component='img' src={WORDGREETING} alt='greeting' />
-                    <TextField type="text" label="Phone number / email" placeholder="Phone number / email" />
-                    <TextField type="password" label="Password" placeholder="At least 8 character" />
+                    <TextField
+                        type="text"
+                        label="Phone number / email"
+                        placeholder="Phone number / email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        type="password"
+                        label="Password"
+                        placeholder="At least 8 character"
+                        value={pass}
+                        onChange={(e) => setPass(e.target.value)}
+                    />
                     <Typography>
                         Forgot your<Button id="my-button" onClick={handleOpenDialog}>password</Button>?
                         <ResetPasswordPopUp open={openDialog} handleClose={handleCloseDialog} />
                     </Typography>
                     <div>
                         <Stack direction="row" spacing={4} display="flex" alignItems="center">
-                            <Button variant="contained" color="info" endIcon={<LoginIcon />} type="submit" onClick={logSuccess} >
+                            <Button variant="contained" color="info" endIcon={<LoginIcon />} onClick={handleLogin} >
                                 Login
                             </Button>
                             <Button variant="contained" color="warning" startIcon={<GoogleIcon />} onClick={() => navigate()} >
