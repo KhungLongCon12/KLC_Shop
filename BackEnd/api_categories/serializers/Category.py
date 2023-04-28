@@ -5,7 +5,7 @@ from api_products.serializers import ProductSerializer
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    products = ProductSerializer(many=True)
+    #products = ProductSerializer(many=True)
 
     class Meta:
         model = Category
@@ -13,5 +13,4 @@ class CategorySerializer(serializers.ModelSerializer):
             "id",
             "name",
             "get_absolute_url",
-            "products"
         )
