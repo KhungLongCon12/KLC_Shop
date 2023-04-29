@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 APPEND_SLASH = True,
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 ]
 # allowed for front end to call api
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080", "https://localhost:8080"
+    'http://localhost:3000', 'https://localhost:3000'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -186,3 +186,9 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = (
+#   'http://localhost:3000  ',
+# )

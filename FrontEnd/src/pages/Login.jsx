@@ -28,12 +28,12 @@ export function Login() {
     //Request API
     const handleLogin = () => {
         const data = {
-            userName: email,
-            passWord: pass,
+            userName: "luong",
+            passWord: "0902927641@",
         };
         axios.post("http://127.0.0.1:8000/account/login/", data).then((resp) => {
             console.log('login thanh cong');
-            console.log(resp.data);
+            console.log(resp);
             navigate('/');
         }).catch((err) => {
             console.log('khong thanh cong')
