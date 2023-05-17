@@ -12,14 +12,12 @@ export function SignUp() {
 
     const handleSignUp = () => {
         const data = {
-            username: " hung",
-            password: "123456789",
-            name: "zxb",
-            gender: "m",
+            name: "luongHa",
             phone: "0123456789",
             birthday: "2000-01-01",
-            email: "luong@gmail.com",
-            career: "st"
+            email: "luongha@gmail.com",
+            gender: "asd",
+            career: "asd",
         };
         axios.post("http://127.0.0.1:8000/account/sign_up/", data)
             .then((resp) => {
@@ -37,7 +35,7 @@ export function SignUp() {
     return (
         <Grid container direction="row" justifyContent="center" alignItems='center' >
             <Grid item xs={6}>
-                <Box
+                <Box component="form"
                     sx={{
                         '& .MuiTextField-root': { m: 1, width: '450px' },
                         '& .MuiButton-root': { m: 1, width: '450px' },
