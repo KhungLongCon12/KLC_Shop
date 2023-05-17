@@ -12,7 +12,7 @@ class ProductAdmin(admin.ModelAdmin):
             'all': ['/static/css/main.css']
         }
 
-    list_display = ["id", "name", "price", "quantity", "image",  "created_date", "category", "active"]
+    list_display = ["id", "name", "price", "image",  "created_date", "category", "active"]
     search_fields = ["name", "category__name"]
     list_filter = ["category__name"]
     readonly_fields = ["img"]
