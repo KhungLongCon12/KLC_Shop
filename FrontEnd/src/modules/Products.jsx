@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
@@ -8,15 +9,24 @@ export default function Products() {
         axios.get("http://127.0.0.1:8000/product/")
             .then((resp) => {
                 console.log(resp.data)
-                setProductData(resp.data)
+                //setProductData(resp.data)
             })
             .catch((err) => console.log("Khong thanh cong", err.message))
     }, [])
 
-    console.log(productData)
+    const handleChecks = () => {
+        axios.get("http://127.0.0.1:8000/product/")
+            .then((resp) => {
+                console.log(resp.data)
+                //setProductData(resp.data)
+            })
+            .catch((err) => console.log("Khong thanh cong", err.message))
+    }
+
 
     return (
         <div>
+            <Button onClick={handleChecks}>Click me</Button>
             {/* {productData.map(item => (
                 <div key={item.id}>
                     <img src={item.get_image} alt={item.name} />
