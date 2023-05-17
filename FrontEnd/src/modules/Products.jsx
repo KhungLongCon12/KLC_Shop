@@ -17,13 +17,13 @@ export default function Products() {
 
     return (
         <div>
-            {productData.map(item => (
+            {/* {productData.map(item => (
                 <div key={item.id}>
                     <img src={item.get_image} alt={item.name} />
                     <h2>{item.description}</h2>
                     <p>{item.price}</p>
                 </div>
-            ))}
+            ))} */}
         </div>
     )
 }
