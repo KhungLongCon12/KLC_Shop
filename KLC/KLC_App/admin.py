@@ -30,6 +30,7 @@ class ProductInline(admin.StackedInline):
 class CategoryAdmin(admin.ModelAdmin):
     inlines = (ProductInline, )
 
+
 class KLC_AppAdminSite(admin.AdminSite):
     site_header = 'HỆ THỐNG BÁN HÀNG'
 
@@ -43,6 +44,7 @@ class KLC_AppAdminSite(admin.AdminSite):
         return TemplateResponse(request, 'admin/KLC-stats.html', {
             'product_count': product_count
         })
+
 
 admin_site = KLC_AppAdminSite('KLC')
 

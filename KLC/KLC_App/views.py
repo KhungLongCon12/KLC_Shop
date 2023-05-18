@@ -4,6 +4,8 @@ from rest_framework import viewsets, permissions, generics, status
 from rest_framework.parsers import MultiPartParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
+# from rest_framework.views import APIView
+# from django.contrib.auth import authenticate, login
 from .serializers import CategorySerializers, ProductSerializers, UserSerializers
 from .models import Category, Product, User
 
@@ -45,6 +47,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ViewSet,
+                  generics.ListAPIView,
                   generics.CreateAPIView,
                   generics.RetrieveAPIView):
     queryset = User.objects.filter(is_active=True)
@@ -56,3 +59,20 @@ class UserViewSet(viewsets.ViewSet,
     #         return [permissions.IsAuthenticated()]
     #
     #     return [permissions.AllowAny()]
+
+
+# class LoginView(APIView):
+#     def post(self, request, format=None):
+#         data = request.data
+#         username = data.get('username', None)
+#         password = data.get('password', None)
+#         user = authenticate(username=username, password=password)
+#         if user is not None:
+#             if user.is_active:
+#                 login(request, user)
+#                 serializer = UserSerializers(user)
+#                 return Response(serializer.data)
+#             else:
+#                 return Response({'error': 'This account has been disabled.'}, status=status.HTTP_400_BAD_REQUEST)
+#         else:
+#             return Response({'error': 'Invalid login credentials.'}, status=status.HTTP_400_BAD_REQUEST)
