@@ -77,6 +77,9 @@ export function SignUp() {
                         </Button>
                     </Stack>
                     <Typography className="input" component="h1"> Already have an account ? <a href="/login"> Log in </a></Typography>
+                    <Typography className="input" component="h1">
+                        <a href="/"> Back to Dyno Store </a>
+                    </Typography>
                 </Box>
             </Grid>
             <Grid item xs={6}>

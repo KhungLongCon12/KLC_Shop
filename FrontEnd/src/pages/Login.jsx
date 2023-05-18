@@ -127,6 +127,6 @@ const ResetPasswordPopUp = (props) => {
                 <Button variant="outlined" onClick={handleClose} >Close</Button>
                 <Button variant="outlined" onClick={handleReset} >Reset password</Button>
             </DialogActions>
-        </Dialog >
+        </Dialog>
     )
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../modules/Navbar';
-import Products from '../modules/Products';
-import { ImageSlider } from '../modules/ImageSlider';
+import { Products } from '../modules/Products';
 
 export default function HomePage() {
     return (

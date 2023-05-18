@@ -8,6 +8,7 @@ import HowToRegTwoToneIcon from '@mui/icons-material/HowToRegTwoTone';
 import AccountCircleTwoToneIcon from '@mui/icons-material/AccountCircleTwoTone';
 import { useNavigate } from "react-router-dom";
 
+
 export default function Navbar() {
 
     const customTheme = createTheme({
@@ -18,9 +19,6 @@ export default function Navbar() {
         },
     })
 
-    // const styledBaged = () => {
-    //     setBadgeNum(badgeNum + 1);
-    // }
 
     const navigate = useNavigate();
 
