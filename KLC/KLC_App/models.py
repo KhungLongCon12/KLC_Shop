@@ -50,3 +50,32 @@ class Product(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class Order(BaseModel):
+    account = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=False)
+    address = models.CharField(max_length=100, null=False)
+    phone = models.CharField(max_length=100)
+    paid_amount = models.IntegerField(null=False)
+
+    class Meta:
+        db_table = 'order'
+        ordering = ['-created_date', ]
+
+    def __str__(self):
+        return str(self.id)
+
+
+class OrderProduct(BaseModel):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    price = models.IntegerField(null=False)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return '%s' % self.id
+
+    class Meta:
+        db_table = 'order_product'
+        ordering = ['-created_date', ]
