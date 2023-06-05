@@ -22,7 +22,8 @@ class Role(BaseModel):
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to='user/')
+    # avatar = models.ImageField(upload_to='user/')
+    avatar = models.ImageField(upload_to='user/', null=True, blank=True)
 
 
 class Category(BaseModel):

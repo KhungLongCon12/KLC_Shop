@@ -6,13 +6,12 @@ import WORDGREETING from "../assets/img/word-Logo-Remove-BackGr.png"
 import RESETPWIMAGE from "../assets/img/reset-password.png"
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Stack, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom";
-import GoogleIcon from '@mui/icons-material/Google';
 import LoginIcon from '@mui/icons-material/Login';
 
-export function Login() {
+export function Login({ onLogin }) {
     // Variable
     const [openDialog, setOpenDialog] = useState(false);
-    const [email, setEmail] = useState();
+    const [userName, setUserName] = useState();
     const [pass, setPass] = useState();
     //Syntax
     const navigate = useNavigate();
@@ -27,20 +26,20 @@ export function Login() {
 
     //Request API
     const handleLogin = () => {
-        const data = {
-            userName: "luong",
-            passWord: "0902927641@",
-        };
-        axios.post("http://127.0.0.1:8000/account/login/", data).then((resp) => {
+        const data = new FormData();
+        data.append("username", userName);
+        data.append("password", pass);
+
+        axios.post("http://127.0.0.1:8000/login/", data).then((resp) => {
             console.log('login thanh cong');
             console.log(resp);
+            onLogin(userName);
             navigate('/');
         }).catch((err) => {
             console.log('khong thanh cong')
             console.log("Error", err.message);
         });
     }
-
 
     return (
         <Grid container direction="row" justifyContent="center" alignItems='center' >
@@ -61,10 +60,10 @@ export function Login() {
                     <Typography component='img' src={WORDGREETING} alt='greeting' />
                     <TextField
                         type="text"
-                        label="Phone number / email"
-                        placeholder="Phone number / email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        label="User Name"
+                        placeholder="User Name"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
                     />
                     <TextField
                         type="password"
@@ -82,8 +81,8 @@ export function Login() {
                             <Button variant="contained" color="info" endIcon={<LoginIcon />} onClick={handleLogin} >
                                 Login
                             </Button>
-                            <Button variant="contained" color="warning" startIcon={<GoogleIcon />} onClick={() => navigate()} >
-                                Login with Google
+                            <Button variant="contained" color="info" endIcon={<LoginIcon />} o onClick={() => { navigate('/') }} >
+                                Keep Shopping
                             </Button>
                         </Stack>
                     </div>

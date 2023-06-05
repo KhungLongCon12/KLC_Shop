@@ -7,25 +7,37 @@ import { Box, Button, Grid, Stack, TextField, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
 
 export function SignUp() {
-    const [user, setUser] = useState()
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [userName, setUserName] = useState('')
+    const [email, setEmail] = useState()
     const [pass, setPass] = useState()
 
     const handleSignUp = () => {
-        const data = {
-            name: "luongHa",
-            phone: "0123456789",
-            birthday: "2000-01-01",
-            email: "luongha@gmail.com",
-            gender: "asd",
-            career: "asd",
-        };
-        axios.post("http://127.0.0.1:8000/account/sign_up/", data)
+        const data = new FormData();
+        data.append("first_name", firstName);
+        data.append("last_name", lastName);
+        data.append("email", email);
+        data.append("username", userName);
+        data.append("password", pass);
+        // const data = {
+        //     first_name: firstName,
+        //     last_name: lastName,
+        //     email: email,
+        //     username: userName,
+        //     password: pass,
+        // };
+        axios.post("http://127.0.0.1:8000/register/", data, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            }
+        },)
             .then((resp) => {
-                console.log('login thanh cong');
+                console.log(alert('login thanh cong'));
                 console.log(resp.data);
-                navigate('/login');
+                navigate('/');
             }).catch((err) => {
-                console.log('khong thanh cong')
+                console.log(alert('khong thanh cong'))
                 console.log("Error", err.message);
             });
     }
@@ -48,14 +60,31 @@ export function SignUp() {
                     <Typography component='img' src={WORDGREETING} alt='greeting' />
                     <TextField
                         type="text"
-                        label="Email"
-                        value={user}
-                        onChange={(e) => setUser(e.target.value)}
+                        label="First Name"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+
+
+                    <TextField
+                        type="text"
+                        label="Last Name"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                     />
 
                     <TextField
-                        type="number"
-                        label="Phone number"
+                        type="email"
+                        label="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+
+                    <TextField
+                        type="text"
+                        label="UserName"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
                     />
 
                     <TextField
@@ -63,14 +92,9 @@ export function SignUp() {
                         label="Password"
                         placeholder="At least 8 character"
                         value={pass}
-                        onChange={(e) => setPass(e.target.value)}
+                        onChange={(e) => { setPass(e.target.value) }}
                     />
 
-                    <TextField
-                        type="password"
-                        label="Confirm Password"
-                        placeholder="At least 8 character"
-                    />
                     <Stack direction="row" spacing={4} display="flex" alignItems="center">
                         <Button variant="contained" color="warning" size="large" onClick={handleSignUp}>
                             Sign up

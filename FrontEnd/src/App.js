@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 
+
 export default function App() {
     return (
         <React.Fragment>

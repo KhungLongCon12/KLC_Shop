@@ -17,8 +17,6 @@ export const ProductModal = ({ selectedProduct, openModal, handleCloseModal }) =
                         sx={{ maxWidth: '100%', maxHeight: '80vh', objectFit: 'contain' }}
                         image={selectedProduct && selectedProduct.image}
                         alt={selectedProduct && selectedProduct.name}
-                    // image={selectedProduct.image}
-                    // alt={selectedProduct.name}
                     />
                     <Typography variant="h6" align="center" sx={{ mt: 2 }}>
                         {selectedProduct && selectedProduct.name}

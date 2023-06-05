@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.template.response import TemplateResponse
 from django.contrib.auth.models import Permission
-from .models import Category, Product, User
+from .models import Category, Product, User, Order, OrderProduct
 from django.utils.html import mark_safe
 from django.urls import path
 
@@ -53,3 +53,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(User)
 admin.site.register(Permission)
+admin.site.register(Order)
